@@ -4,19 +4,40 @@ import firebase from '../Firebase'
 
 export const AuthContext = React.createContext()
 
+const db = firebase.firestore(); 
+
 class AuthContextProvider extends Component {
     state = {
         isLoggedIn: null,
         user: {
             name: 'Gosho',
-            age: 100,
-            email: 'gosho@gosho.bg'
+            description: '',
+            email: 'gosho@gosho.bg',
+            imageUrl: 'https://www.redditstatic.com/avatars/avatar_default_01_008985.png'
         }
     }
 
     login = (userData) => {
         firebase.auth().signInWithEmailAndPassword(userData.email, userData.password).then( data => {
-            console.log(data.user.uid)
+           db.collection('users').doc(data.user.uid).onSnapshot(res => {
+            this.setState( { ...this.state, user: res.data()} )
+           })
+        }).catch(e => {
+            console.error(e)
+            alert(e.message)
+        })       
+    }
+
+    register = (userData) => {
+        firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password).then( data => {
+          const dbData = {
+            uid: data.user.uid,
+            email: userData.email,
+            name: userData.name,
+            description: userData.description,
+            imageUrl: userData.imageUrl
+          }         
+          db.doc(`users/${data.user.uid}`).set(dbData, { merge: true }).then(res => console.log(res)).catch(e => console.error(e))
         }).catch(e => {
             console.error(e)
             alert(e.message)
@@ -26,7 +47,7 @@ class AuthContextProvider extends Component {
 
     render() { 
       return (
-        <AuthContext.Provider value={{ ...this.state, login: this.login }}>
+        <AuthContext.Provider value={{ ...this.state, login: this.login, register: this.register }}>
           {this.props.children}
         </AuthContext.Provider>
       );
@@ -34,3 +55,4 @@ class AuthContextProvider extends Component {
   }
    
   export default AuthContextProvider;
+
