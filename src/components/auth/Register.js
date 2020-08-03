@@ -1,49 +1,49 @@
 import React, { useState, useContext } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
+import Input from "./Input"
+import validation from '../../utils/validation'
 
 const Register = () => {
   //this is a state hooks
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [isDisabled, setIsDisabled] = useState(true)
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  const [imageUrl, setImgUrl] = useState('')
 
   //this is a context hooks
   const auth = useContext(AuthContext)
-  const { login } = useContext(AuthContext)
+  const { register } = useContext(AuthContext)
 
-  //handle login function
-  const handleRegister= (e) => {
+  //handle register function
+  const handleRegister = (e) => {
     e.preventDefault()
-    login( {email, password, name: 'tosho'} )
+    register( {email, password, name, description, imageUrl} )
     setEmail('')
     setPassword('')
   }
+
+const validEmail = validation('email', email, 'Email is not valid')
+const validPassword = validation('password', password, 'Password must be between 6 and 16 chars')
+const validName = validation('name', name, 'Name must be between 3 and 20 chars')
+const validDescription = validation('description', description, 'Description must be between 32 and 2000 chars')
+const validImage = validation('image', imageUrl, 'Image url is not valid')
 
   return (
     <div>
       <h2>{auth.user.email}</h2>
       <form>
-        <div className="form-group">
-          <label htmlFor="email">Email address </label>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email address"
-            id="email"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password </label>
-          <input
-          value={password}
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            id="password"
-          />
-        </div>
-        <button type="submit" disabled={isDisabled} onClick={ handleRegister }>Register</button>
+        <Input type="text" value={name} setValue={setName} valid={validName} name="name" />
+
+        <Input type="text" value={description} setValue={setDescription} valid={validDescription} name="description" />
+
+        <Input type="text" value={imageUrl} setValue={setImgUrl} valid={validImage} name="image url" />
+
+        <Input type="text" value={email} setValue={setEmail} valid={validEmail} name="email" />
+        
+        <Input type="password" value={password} setValue={setPassword} valid={validPassword} name="password" />
+
+        <button type="submit" disabled={ validEmail.err || validPassword.err } onClick={ handleRegister }>Register</button>
       </form>
     </div>
   );
