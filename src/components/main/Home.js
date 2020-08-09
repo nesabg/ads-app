@@ -1,18 +1,15 @@
 import React, { useContext } from 'react'
-import Login from '../auth/Login'
-import { AuthContext } from '../../contexts/AuthContext'
-// import Register from '../auth/Register'
+import { AdContext } from '../../contexts/AdContext'
+import SingleAdBox from './SingleAdBox'
 
 const Home = () => {
-    const auth = useContext(AuthContext)
+    const ads = useContext(AdContext)
+    const allAds = ads.allAds.map( (ad) => <SingleAdBox ad={ad} key={ad.uid} />)
+    
     return (
         <div className="home">
             <h1>This is home</h1>
-            <p>Lorem ipsum dolor ist</p>
-            <p>From home component: {auth.user.name}</p>
-            <img src={auth.user.imageUrl} alt="user avatar" />
-            <Login />
-            {/* <Register /> */}
+            { ads.allAds.length === 0 ? <div>Loading...</div> : <div>{ allAds }</div>}
         </div>
     )
 }
