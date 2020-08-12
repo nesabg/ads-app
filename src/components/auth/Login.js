@@ -2,11 +2,13 @@ import React, { useState, useContext } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
 import Input from "./Input"
 import validation from '../../utils/validation'
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   //this is a state hooks
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const history = useHistory();
 
   //this is a context hooks
   const auth = useContext(AuthContext)
@@ -15,7 +17,9 @@ const Login = () => {
   //handle login function
   const handleLogin = (e) => {
     e.preventDefault()
-    login( {email, password, name: 'tosho'} )
+    login( { email, password } ).then(res => {
+      history.push('/');
+    })
     setEmail('')
     setPassword('')
   }
