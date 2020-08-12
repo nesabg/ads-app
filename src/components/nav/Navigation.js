@@ -1,16 +1,24 @@
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/AuthContext';
 import SignedOutLinks from './SignedOutLinks'
-import styles from './Navigation.module.css'
 import SignedInLinks from './SignedInLinks';
+import styled from 'styled-components';
+
+const NavField = styled.nav`
+    width: 100%;
+    background-color: #61dafb;
+    padding: 5px 0;
+`
 
 const Navigation = () => {
     const { isLoggedIn } = useContext(AuthContext)
-    console.log(isLoggedIn);
+
     return (
-        <nav className={styles.navigation}>
+        <NavField>
+            <Link to="/">Free Ads</Link>    
             { isLoggedIn ? <SignedInLinks /> : <SignedOutLinks />}
-        </nav>
+        </NavField>
     )
 }
 

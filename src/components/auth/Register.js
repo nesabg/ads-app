@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
 import Input from "./Input"
+import TextareaField from "./TextareaField"
 import validation from '../../utils/validation'
+import { Form, SubmitButton } from '../../utils/elements'
 
 const Register = () => {
   //this is a state hooks
@@ -32,10 +34,10 @@ const validImage = validation('image', imageUrl, 'Image url is not valid')
   return (
     <div>
       <h2>{auth.user.email}</h2>
-      <form>
+      <Form>
         <Input type="text" value={name} setValue={setName} valid={validName} name="name" />
 
-        <Input type="text" value={description} setValue={setDescription} valid={validDescription} name="description" />
+        <TextareaField value={description} setValue={setDescription} valid={validDescription} name="description" />
 
         <Input type="text" value={imageUrl} setValue={setImgUrl} valid={validImage} name="image url" />
 
@@ -43,8 +45,8 @@ const validImage = validation('image', imageUrl, 'Image url is not valid')
         
         <Input type="password" value={password} setValue={setPassword} valid={validPassword} name="password" />
 
-        <button type="submit" disabled={ validEmail.err || validPassword.err } onClick={ handleRegister }>Register</button>
-      </form>
+        <SubmitButton type="submit" disabled={ validEmail.err || validPassword.err } onClick={ handleRegister }>Register</SubmitButton>
+      </Form>
     </div>
   );
 };

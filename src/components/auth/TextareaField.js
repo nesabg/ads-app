@@ -5,8 +5,9 @@ const Label = styled.label`
     color: #7b7b7b;
     display: block;
 `
-const InputField = styled.input`
+const Textarea = styled.textarea`
     width: 100%;
+    height: 100px;
     margin: 10px 0;
     padding: 5px 0;
     border: none;
@@ -20,12 +21,12 @@ const Danger = styled.div`
     font-style: italic;
 `
 
-const Input = ({ value, type, setValue, valid, name }) => {
+const TextareaField = ({ value, type, setValue, valid, name }) => {
     
     return (
         <div>
             <Label htmlFor={name}>{name.charAt(0).toUpperCase() + name.slice(1)} </Label>
-            <InputField
+            <Textarea
                 value={value}
                 type={type}
                 onChange={(e) => {
@@ -40,4 +41,4 @@ const Input = ({ value, type, setValue, valid, name }) => {
     )
 }
 
-export default Input
+export default TextareaField

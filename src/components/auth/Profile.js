@@ -6,8 +6,8 @@ import SingleAdBox from '../main/SingleAdBox'
 const Profile = () => {
 
     const { user } = useContext(AuthContext)
-
     const { allAds } = useContext(AdContext)
+    
     const userAds = allAds.filter( e => e.aid === user.uid)
     const ads = userAds.map( (ad) => <SingleAdBox ad={ad} key={ad.uid} />)
 
