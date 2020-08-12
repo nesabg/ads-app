@@ -1,9 +1,10 @@
 import React from 'react'
+import s from './Input.module.css'
 
 const Input = ({ value, type, setValue, valid, name }) => {
     
     return (
-        <div className="form-group">
+        <div className={s.formGroup}>
             <label htmlFor={name}>{name.charAt(0).toUpperCase() + name.slice(1)} </label>
             <input
                 value={value}

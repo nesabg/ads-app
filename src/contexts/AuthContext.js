@@ -8,19 +8,20 @@ const db = firebase.firestore();
 
 class AuthContextProvider extends Component {
     state = {
-        isLoggedIn: null,
+        isLoggedIn: false,
         user: {
             name: 'Gosho',
             description: '',
+            aid: 123,
             email: 'gosho@gosho.bg',
             imageUrl: 'https://www.redditstatic.com/avatars/avatar_default_01_008985.png'
         }
     }
 
     login = (userData) => {
-        firebase.auth().signInWithEmailAndPassword(userData.email, userData.password).then( data => {
+        return firebase.auth().signInWithEmailAndPassword(userData.email, userData.password).then( data => {
            db.collection('users').doc(data.user.uid).onSnapshot(res => {
-            this.setState( { ...this.state, user: res.data()} )
+            this.setState( { ...this.state, user: res.data(), isLoggedIn: true} )
            })
         }).catch(e => {
             console.error(e)
