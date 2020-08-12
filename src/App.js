@@ -9,6 +9,7 @@ import s from './App.module.css'
 import SingleAd from "./components/ads/SingleAd";
 import UpdateAd from "./components/ads/UpdateAd";
 import Profile from "./components/auth/Profile";
+import Footer from "./components/main/Footer";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <UpdateAd />
         </Route>
       </Switch>
+      <Footer />
     </div>
   );
 }
