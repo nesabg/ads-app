@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { useParams, useHistory, Link, useRouteMatch } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { AdContext } from '../../contexts/AdContext';
 import { AuthContext } from '../../contexts/AuthContext';
 
@@ -15,7 +15,7 @@ const SingleAd = () => {
         if(allAds.length === 0){
             history.push('/')
         }
-      },[]);
+      },[allAds.length, history]);
 
     const handleDelete = () => {
         deleteAd(params.id).then(res => {

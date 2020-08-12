@@ -18,7 +18,6 @@ const CreateAds = () => {
         //this is a context hooks
         const auth = useContext(AuthContext)
         const { createAd } = useContext(AdContext)
-        const ads = useContext(AdContext)
 
         //handle register function
         const handleRegister = (e) => {
