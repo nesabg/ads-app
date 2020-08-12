@@ -8,7 +8,7 @@ const Home = () => {
     
     return (
         <div className="home">
-            <h1>This is home</h1>
+            <h1>Welcome to our free classifieds app</h1>
             { ads.allAds.length === 0 ? <div>Loading...</div> : <div>{ allAds }</div>}
         </div>
     )
