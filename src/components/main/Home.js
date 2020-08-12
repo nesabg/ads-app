@@ -1,6 +1,13 @@
 import React, { useContext } from 'react'
 import { AdContext } from '../../contexts/AdContext'
 import SingleAdBox from './SingleAdBox'
+import styled from 'styled-components'
+
+const Title = styled.h1`
+    color: black;
+    font-size: 30px;
+    text-align: center
+`
 
 const Home = () => {
     const ads = useContext(AdContext)
@@ -8,7 +15,7 @@ const Home = () => {
     
     return (
         <div className="home">
-            <h1>Welcome to our free classifieds app</h1>
+            <Title>Welcome to our free classifieds app</Title>
             { ads.allAds.length === 0 ? <div>Loading...</div> : <div>{ allAds }</div>}
         </div>
     )

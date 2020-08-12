@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import styles from './SignedOutLinks.module.css'
+import { NavUlElement } from '../../utils/elements'
 
 const SignedOutLinks = () => {
     return (
         <>
-            <ul className={styles.navul}>
+            <NavUlElement>
                 <li>
                     <Link to="/">Home</Link>              
                 </li>
@@ -15,7 +15,7 @@ const SignedOutLinks = () => {
                 <li>
                     <Link to="/register">Register</Link>              
                 </li>
-            </ul>
+            </NavUlElement>
         </>
     )
 }
