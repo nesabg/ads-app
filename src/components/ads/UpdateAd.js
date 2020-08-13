@@ -40,7 +40,7 @@ const UpdateAd = () => {
 
 
     const validAddress = validation('description', address, 'Address must be between 32 and 2000 chars')
-    const validTitle = validation('name', title, 'Title must be between 3 and 20 chars')
+    const validTitle = validation('message', title, 'Title must be between 3 and 20 chars')
     const validDescription = validation('description', description, 'Description must be between 32 and 2000 chars')
     const validImage = validation('image', imageUrl, 'Image url is not valid')
     const validPrice = validation('price', price, 'Price must be positive number')

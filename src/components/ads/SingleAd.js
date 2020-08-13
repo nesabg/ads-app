@@ -4,6 +4,8 @@ import { AdContext } from '../../contexts/AdContext'
 import { AuthContext } from '../../contexts/AuthContext'
 import styled from 'styled-components'
 import { HeadingOne, SubmitButton } from '../../utils/elements'
+import AddingComments from '../comments/AddingComment'
+import ViewComments from '../comments/ViewComments'
 
 const AdWrapper = styled.div`
     display: grid;
@@ -49,7 +51,7 @@ const SingleAd = () => {
     const history = useHistory()
     const { allAds, deleteAd } = useContext(AdContext)
     const currentAd = allAds.find(e => e.uid === params.id) || ''
-    const { user } = useContext(AuthContext)
+    const { isLoggedIn, user } = useContext(AuthContext)
 
     useEffect(() => {
         if(allAds.length === 0){
@@ -62,6 +64,8 @@ const SingleAd = () => {
             history.push('/')
         })
     }
+    console.log(currentAd.comments)
+    const comments = currentAd.comments.map( comment => <ViewComments key={ comment.dateCreate } comment={ comment }/>)
 
     const isAuthor = user.uid === currentAd.aid
 
@@ -72,12 +76,14 @@ const SingleAd = () => {
                 <HeadingOne>{ currentAd.title }</HeadingOne>
                 <p><strong>Description:</strong> { currentAd.description}</p>
                 <p><strong>Price:</strong> { currentAd.price}</p>
+                { comments }
             </AdData>
             <UserData>
                 <img src={currentAd.aimg} alt='user pic' />
                 <p><strong>Author:</strong> { currentAd.author}</p>
                 <p><strong>Address:</strong> { currentAd.address}</p>
             { isAuthor ? (<><SubmitButton color="red" onClick={handleDelete}>Delete ad</SubmitButton> <Link to={`update/${params.id}`} ><SubmitButton>Update ad</SubmitButton></Link></>) : null }
+                { isLoggedIn ? <AddingComments /> : null }
             </UserData>
         </AdWrapper>
     )
