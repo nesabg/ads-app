@@ -3,7 +3,8 @@ import { AuthContext } from "../../contexts/AuthContext"
 import Input from "./Input"
 import TextareaField from "./TextareaField"
 import { validation } from '../../utils/validations'
-import { Form, SubmitButton } from '../../utils/elements'
+import { Form, SubmitButton, HeadingOne } from '../../utils/elements'
+import { useHistory } from "react-router-dom"
 
 const Register = () => {
   //this is a state hooks
@@ -13,14 +14,17 @@ const Register = () => {
   const [description, setDescription] = useState('')
   const [imageUrl, setImgUrl] = useState('')
 
+  const history = useHistory();
+
   //this is a context hooks
-  const auth = useContext(AuthContext)
   const { register } = useContext(AuthContext)
 
   //handle register function
   const handleRegister = (e) => {
     e.preventDefault()
-    register( {email, password, name, description, imageUrl} )
+    register( {email, password, name, description, imageUrl} ).then( res => {
+      history.push('/')
+    })
     setEmail('')
     setPassword('')
   }
@@ -33,7 +37,7 @@ const validImage = validation('image', imageUrl, 'Image url is not valid')
 
   return (
     <div>
-      <h2>{auth.user.email}</h2>
+      <HeadingOne>Register</HeadingOne>
       <Form>
         <Input type="text" value={name} setValue={setName} valid={validName} name="name" />
 

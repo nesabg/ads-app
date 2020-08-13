@@ -18,7 +18,8 @@ class AdContextProvider extends Component {
         address: data.address,
         price: data.price,
         author: data.auth.user.name,
-        aid: data.auth.user.uid
+        aid: data.auth.user.uid,
+        aimg: data.auth.user.imageUrl
         }         
         return db.collection('ads').add(dbData)
     }
@@ -29,7 +30,8 @@ class AdContextProvider extends Component {
         description: data.description,
         imageUrl: data.imageUrl,
         address: data.address,
-        price: data.price
+        price: data.price,
+        aimg: data.auth.user.imageUrl
         }         
         return db.collection('ads').doc(id).set(dbData, {merge: true})
     }

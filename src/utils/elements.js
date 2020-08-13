@@ -7,29 +7,33 @@ export const Form = styled.form`
 
 export const SubmitButton = styled.button`
 
-    background: #61dafb;
+    background: ${(props) =>  props.color || '#61dafb'}; ;
     color: white;
     font-size: 1em;
     margin: 1em 0;
     padding: 0.25em 1em;
-    border: 2px solid #61dafb;
     border-radius: 3px;
+    border: none;
+    cursor: pointer;
 `
 
 export const NavUlElement = styled.ul`
-    width: 80%;
+    width: 70%;
+    display: inline-block;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
     padding: 20px 10px;
     list-style-type: none;
+
+    li {
+        display: inline-block;
+        width: 10%;
+        text-align: center;
+    }
 
     li a{
         width: 80%;
         color: white;
         margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(3, 100px);
         padding: 20px 10px;
     }
 
@@ -38,12 +42,7 @@ export const NavUlElement = styled.ul`
         background-color: white;
     }
 `
-
-// export const StyledLink = styled(Link)`
-//     width: 80%;
-//     margin: 0 auto;
-//     display: grid;
-//     grid-template-columns: repeat(3, 100px);
-//     padding: 20px 10px;
-//     list-style-type: none;
-// `
+export const HeadingOne = styled.h1`
+    margin: 20px 0;
+    font-size: 28px;
+`

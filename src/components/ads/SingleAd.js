@@ -3,6 +3,7 @@ import { useParams, useHistory, Link } from "react-router-dom"
 import { AdContext } from '../../contexts/AdContext'
 import { AuthContext } from '../../contexts/AuthContext'
 import styled from 'styled-components'
+import { HeadingOne, SubmitButton } from '../../utils/elements'
 
 const AdWrapper = styled.div`
     display: grid;
@@ -69,15 +70,15 @@ const SingleAd = () => {
         <AdWrapper>
             <AdData>
                 <img src={currentAd.imageUrl} alt="imgAlt" />
-                <h1>{ currentAd.title }</h1>
+                <HeadingOne>{ currentAd.title }</HeadingOne>
                 <p>Description: { currentAd.description}</p>
                 <p>Price: { currentAd.price}</p>
             </AdData>
             <UserData>
-                <img src={user.imageUrl} alt='user pic' />
+                <img src={currentAd.aimg} alt='user pic' />
                 <p>Author: { currentAd.author}</p>
                 <p>Address: { currentAd.address}</p>
-            { isAuthor ? (<><button onClick={handleDelete}>Delete ad</button> <Link to={`update/${params.id}`} >Update ad</Link></>) : null }
+            { isAuthor ? (<><SubmitButton color="red" onClick={handleDelete}>Delete ad</SubmitButton> <Link to={`update/${params.id}`} ><SubmitButton>Update ad</SubmitButton></Link></>) : null }
             </UserData>
         </AdWrapper>
     )

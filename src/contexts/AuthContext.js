@@ -36,7 +36,7 @@ class AuthContextProvider extends Component {
     }
 
     register = (userData) => {
-        firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password).then( data => {
+        return firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password).then( data => {
           const dbData = {
             uid: data.user.uid,
             email: userData.email,
@@ -44,12 +44,17 @@ class AuthContextProvider extends Component {
             description: userData.description,
             imageUrl: userData.imageUrl
           }         
-          db.doc(`users/${data.user.uid}`).set(dbData, { merge: true }).then(res => console.log(res)).catch(e => console.error(e))
+          
+          db.doc(`users/${data.user.uid}`)
+            .set(dbData, { merge: true })
+            .then(res => console.log(res))
+            .catch(e => console.error(e))
+
+          this.login(userData)
         }).catch(e => {
             console.error(e)
             alert(e.message)
         })
-        this.setState( { ...this.state, user: userData} )
     }
 
     render() { 

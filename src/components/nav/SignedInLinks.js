@@ -27,7 +27,7 @@ const SignedInLinks = () => {
                     <Link to="/profile">My Profile</Link>              
                 </li>
                 <li>
-                    <Link onClick={ logoutHandler } >Logout</Link>              
+                    <Link to='/' onClick={ logoutHandler } >Logout</Link>              
                 </li>
             </NavUlElement>
         </>

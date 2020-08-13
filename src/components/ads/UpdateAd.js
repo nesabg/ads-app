@@ -6,6 +6,7 @@ import  {validation } from '../../utils/validations'
 import { useHistory, useParams } from 'react-router-dom'
 import { Form } from '../../utils/elements'
 import TextareaField from '../auth/TextareaField'
+import { HeadingOne, SubmitButton } from '../../utils/elements'
 
 
 
@@ -25,7 +26,7 @@ const UpdateAd = () => {
     const [description, setDescription] = useState(currentAd.description)
     const [imageUrl, setImgUrl] = useState(currentAd.imageUrl)
     const [address, setAddress] = useState(currentAd.address)
-    const [price, setPrice] = useState('')
+    const [price, setPrice] = useState(currentAd.price)
 
 
 
@@ -46,7 +47,7 @@ const UpdateAd = () => {
 
     return (
         <div>
-            <h1>Update your ad</h1>
+            <HeadingOne>Update your ad</HeadingOne>
             <Form>
                 <Input type="text" value={title} setValue={setTitle} valid={validTitle} name="title" />
 
@@ -58,7 +59,7 @@ const UpdateAd = () => {
 
                 <Input type="number" value={price} setValue={setPrice} valid={validPrice} name="Price" />
                 
-            <button type="submit" disabled={ validTitle.err } onClick={ handleUpdate }>Update ad</button>
+            <SubmitButton type="submit" disabled={ validTitle.err } onClick={ handleUpdate }>Update ad</SubmitButton>
             </Form>
       </div>
     )
