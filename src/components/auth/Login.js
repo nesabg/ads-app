@@ -3,7 +3,7 @@ import { AuthContext } from "../../contexts/AuthContext"
 import Input from "./Input"
 import { validation } from '../../utils/validations'
 import { useHistory } from "react-router-dom";
-import { Form, SubmitButton } from '../../utils/elements'
+import { Form, SubmitButton, HeadingOne } from '../../utils/elements'
 
 const Login = () => {
   //this is a state hooks
@@ -12,7 +12,6 @@ const Login = () => {
   const history = useHistory();
 
   //this is a context hooks
-  const auth = useContext(AuthContext)
   const { login } = useContext(AuthContext)
 
   //handle login function
@@ -30,7 +29,7 @@ const validPassword = validation('password', password, 'Password must be between
 
   return (
     <div>
-      <h2>{auth.user.email}</h2>
+      <HeadingOne>Login</HeadingOne>
       <Form>
         <Input type="text" value={email} setValue={setEmail} valid={validEmail} name="email" />
         

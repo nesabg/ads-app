@@ -4,7 +4,7 @@ import { AdContext } from "../../contexts/AdContext"
 import Input from "../auth/Input"
 import  { validation }  from '../../utils/validations'
 import { useHistory } from 'react-router-dom'
-import { Form } from '../../utils/elements'
+import { Form, HeadingOne } from '../../utils/elements'
 import TextareaField from '../auth/TextareaField'
 
 const CreateAds = () => {
@@ -24,7 +24,7 @@ const CreateAds = () => {
         //handle register function
         const handleRegister = (e) => {
             e.preventDefault()
-            createAd( { title, address, description, imageUrl, auth } ).then( res => {
+            createAd( { title, address, description, imageUrl, auth, price } ).then( res => {
                 history.push('/')
             })
         }
@@ -37,7 +37,7 @@ const CreateAds = () => {
 
     return (
         <div>
-            <h1>Create a ad</h1>
+            <HeadingOne>Create a ad</HeadingOne>
             <Form>
                 <Input type="text" value={title} setValue={setTitle} valid={validTitle} name="title" />
 

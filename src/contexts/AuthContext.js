@@ -29,8 +29,14 @@ class AuthContextProvider extends Component {
         })       
     }
 
+    logout = () => {
+      return firebase.auth().signOut().then(res => {
+        this.setState( {...this.state, isLoggedIn: false })
+      })
+    }
+
     register = (userData) => {
-        firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password).then( data => {
+        return firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password).then( data => {
           const dbData = {
             uid: data.user.uid,
             email: userData.email,
@@ -38,17 +44,22 @@ class AuthContextProvider extends Component {
             description: userData.description,
             imageUrl: userData.imageUrl
           }         
-          db.doc(`users/${data.user.uid}`).set(dbData, { merge: true }).then(res => console.log(res)).catch(e => console.error(e))
+          
+          db.doc(`users/${data.user.uid}`)
+            .set(dbData, { merge: true })
+            .then(res => console.log(res))
+            .catch(e => console.error(e))
+
+          this.login(userData)
         }).catch(e => {
             console.error(e)
             alert(e.message)
         })
-        this.setState( { ...this.state, user: userData} )
     }
 
     render() { 
       return (
-        <AuthContext.Provider value={{ ...this.state, login: this.login, register: this.register }}>
+        <AuthContext.Provider value={{ ...this.state, login: this.login, register: this.register, logout: this.logout }}>
           {this.props.children}
         </AuthContext.Provider>
       );

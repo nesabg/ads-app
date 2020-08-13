@@ -7,8 +7,20 @@ import styled from 'styled-components';
 
 const NavField = styled.nav`
     width: 100%;
+    display: inline-block;
     background-color: #61dafb;
     padding: 5px 0;
+`
+
+const StyledLink = styled(Link)`
+    width: 10%;
+    font-size: 20px;
+    text-align: center;
+    background-color: white;
+    color: #61dafb;
+    margin: 10px;
+    padding: 20px 10px;
+    display: inline-block;
 `
 
 const Navigation = () => {
@@ -16,7 +28,7 @@ const Navigation = () => {
 
     return (
         <NavField>
-            <Link to="/">Free Ads</Link>    
+            <StyledLink to="/">Free Ads</StyledLink>    
             { isLoggedIn ? <SignedInLinks /> : <SignedOutLinks />}
         </NavField>
     )

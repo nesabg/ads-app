@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
 import { AdContext } from '../../contexts/AdContext'
 import SingleAdBox from '../main/SingleAdBox'
+import { HeadingOne } from '../../utils/elements'
 
 const Profile = () => {
 
@@ -13,7 +14,7 @@ const Profile = () => {
 
     return (
         <div>
-            <h1>Profile</h1>
+            <HeadingOne>Profile</HeadingOne>
             <p>Name: { user.name }</p>
             <p>Description: { user.description }</p>
             <p>Email: { user.email }</p>

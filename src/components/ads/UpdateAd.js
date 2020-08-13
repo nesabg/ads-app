@@ -6,6 +6,7 @@ import  {validation } from '../../utils/validations'
 import { useHistory, useParams } from 'react-router-dom'
 import { Form } from '../../utils/elements'
 import TextareaField from '../auth/TextareaField'
+import { HeadingOne, SubmitButton } from '../../utils/elements'
 
 
 
@@ -25,12 +26,14 @@ const UpdateAd = () => {
     const [description, setDescription] = useState(currentAd.description)
     const [imageUrl, setImgUrl] = useState(currentAd.imageUrl)
     const [address, setAddress] = useState(currentAd.address)
+    const [price, setPrice] = useState(currentAd.price)
+
 
 
     //handle register function
     const handleUpdate = (e) => {
         e.preventDefault()
-        updateAd( { title, address, description, imageUrl, auth }, params.id ).then( res => {
+        updateAd( { title, address, description, imageUrl, auth, price }, params.id ).then( res => {
             history.push('/add/' + params.id)
         })
     }
@@ -40,10 +43,11 @@ const UpdateAd = () => {
     const validTitle = validation('name', title, 'Title must be between 3 and 20 chars')
     const validDescription = validation('description', description, 'Description must be between 32 and 2000 chars')
     const validImage = validation('image', imageUrl, 'Image url is not valid')
+    const validPrice = validation('price', price, 'Price must be positive number')
 
     return (
         <div>
-            <h1>Update your ad</h1>
+            <HeadingOne>Update your ad</HeadingOne>
             <Form>
                 <Input type="text" value={title} setValue={setTitle} valid={validTitle} name="title" />
 
@@ -52,8 +56,10 @@ const UpdateAd = () => {
                 <Input type="text" value={imageUrl} setValue={setImgUrl} valid={validImage} name="image url" />
 
                 <Input type="text" value={address} setValue={setAddress} valid={validAddress} name="Address" />
+
+                <Input type="number" value={price} setValue={setPrice} valid={validPrice} name="Price" />
                 
-            <button type="submit" disabled={ validTitle.err } onClick={ handleUpdate }>Update ad</button>
+            <SubmitButton type="submit" disabled={ validTitle.err } onClick={ handleUpdate }>Update ad</SubmitButton>
             </Form>
       </div>
     )
