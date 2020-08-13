@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react'
 import { AuthContext } from "../../contexts/AuthContext"
 import { AdContext } from "../../contexts/AdContext"
 import Input from "../auth/Input"
-import validation from '../../utils/validation'
+import  {validation } from '../../utils/validations'
 import { useHistory, useParams } from 'react-router-dom'
 import { Form } from '../../utils/elements'
 import TextareaField from '../auth/TextareaField'

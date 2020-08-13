@@ -78,7 +78,6 @@ const SingleAd = () => {
                 <p>Address: { currentAd.address}</p>
             { isAuthor ? (<><button onClick={handleDelete}>Delete ad</button> <Link to={`update/${params.id}`} >Update ad</Link></>) : null }
             </UserData>
-
         </AdWrapper>
     )
 }

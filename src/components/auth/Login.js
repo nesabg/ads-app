@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
 import Input from "./Input"
-import validation from '../../utils/validation'
+import { validation } from '../../utils/validations'
 import { useHistory } from "react-router-dom";
 import { Form, SubmitButton } from '../../utils/elements'
 

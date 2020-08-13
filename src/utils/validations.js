@@ -1,4 +1,4 @@
-const validation = (type, field, errMessage) => {
+export const validation = (type, field, errMessage) => {
     if(type === 'email'){
         if(field.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
             return {
@@ -59,7 +59,17 @@ const validation = (type, field, errMessage) => {
                 message: errMessage
             }
         }
+    }else if(type === 'price'){
+        if(field >= 0) {
+            return {
+                err: false,
+                message: null
+            }
+        }else {
+            return {
+                err: true,
+                message: errMessage
+            }
+        }
     }
 }
-
-export default validation

@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react'
 import { AuthContext } from "../../contexts/AuthContext"
 import { AdContext } from "../../contexts/AdContext"
 import Input from "../auth/Input"
-import validation from '../../utils/validation'
+import  { validation }  from '../../utils/validations'
 import { useHistory } from 'react-router-dom'
 import { Form } from '../../utils/elements'
 import TextareaField from '../auth/TextareaField'
@@ -13,6 +13,7 @@ const CreateAds = () => {
       const [description, setDescription] = useState('')
       const [imageUrl, setImgUrl] = useState('')
       const [address, setAddress] = useState('')
+      const [price, setPrice] = useState('')
 
       const history = useHistory();
 
@@ -28,10 +29,11 @@ const CreateAds = () => {
             })
         }
 
-        const validAddress = validation('description', address, 'Address must be between 32 and 2000 chars')
         const validTitle = validation('name', title, 'Title must be between 3 and 20 chars')
         const validDescription = validation('description', description, 'Description must be between 32 and 2000 chars')
         const validImage = validation('image', imageUrl, 'Image url is not valid')
+        const validAddress = validation('description', address, 'Address must be between 32 and 2000 chars')
+        const validPrice = validation('price', price, 'Price must be positive number')
 
     return (
         <div>
@@ -44,6 +46,8 @@ const CreateAds = () => {
                 <Input type="text" value={imageUrl} setValue={setImgUrl} valid={validImage} name="image url" />
 
                 <Input type="text" value={address} setValue={setAddress} valid={validAddress} name="Address" />
+
+                <Input type="number" value={price} setValue={setPrice} valid={validPrice} name="Price" />
                 
             <button type="submit" disabled={ validTitle.err } onClick={ handleRegister }>Create ad</button>
             </Form>
