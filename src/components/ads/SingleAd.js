@@ -13,7 +13,6 @@ const AdWrapper = styled.div`
 `
 
 const AdData = styled.div`
-    border: 5px solid grey;
     padding: 20px;
     position: relative;
     overflow: hidden;
@@ -71,13 +70,13 @@ const SingleAd = () => {
             <AdData>
                 <img src={currentAd.imageUrl} alt="imgAlt" />
                 <HeadingOne>{ currentAd.title }</HeadingOne>
-                <p>Description: { currentAd.description}</p>
-                <p>Price: { currentAd.price}</p>
+                <p><strong>Description:</strong> { currentAd.description}</p>
+                <p><strong>Price:</strong> { currentAd.price}</p>
             </AdData>
             <UserData>
                 <img src={currentAd.aimg} alt='user pic' />
-                <p>Author: { currentAd.author}</p>
-                <p>Address: { currentAd.address}</p>
+                <p><strong>Author:</strong> { currentAd.author}</p>
+                <p><strong>Address:</strong> { currentAd.address}</p>
             { isAuthor ? (<><SubmitButton color="red" onClick={handleDelete}>Delete ad</SubmitButton> <Link to={`update/${params.id}`} ><SubmitButton>Update ad</SubmitButton></Link></>) : null }
             </UserData>
         </AdWrapper>

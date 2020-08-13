@@ -3,6 +3,17 @@ import { AuthContext } from '../../contexts/AuthContext'
 import { AdContext } from '../../contexts/AdContext'
 import SingleAdBox from '../main/SingleAdBox'
 import { HeadingOne } from '../../utils/elements'
+import styled from 'styled-components'
+
+const ProfileInfoWrapper = styled.div`
+    display: grid;
+    grid-template-columns: 60% 38%;
+`
+
+const StyledImage = styled.img`
+  width: 80%;
+  margin: 20px;
+`
 
 const Profile = () => {
 
@@ -15,10 +26,14 @@ const Profile = () => {
     return (
         <div>
             <HeadingOne>Profile</HeadingOne>
-            <p>Name: { user.name }</p>
-            <p>Description: { user.description }</p>
-            <p>Email: { user.email }</p>
-            <img src={ user.imageUrl } alt="profile pic" />
+            <ProfileInfoWrapper>
+                <div>
+                    <p><strong>Name:</strong> { user.name }</p>
+                    <p><strong>Description: </strong> { user.description }</p>
+                    <p><strong>Email: </strong> { user.email }</p>
+                </div>
+                <StyledImage src={ user.imageUrl } alt="profile pic" />
+            </ProfileInfoWrapper>
             <div>{ ads }</div>            
         </div>
     )   
