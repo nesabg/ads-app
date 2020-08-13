@@ -26,23 +26,22 @@ function App() {
             <Home />
           </Route>
           <Route path="/login">
-            <Login />
+            { isLoggedIn ? <Redirect to='/'/> : <Login />}
           </Route>
           <Route path="/register">
-            <Register />
+            { isLoggedIn ? <Redirect to='/'/> : <Register />}
           </Route>
           <Route path="/profile">
-            <Profile />
+            { isLoggedIn ? <Profile /> : <Redirect to='/'/> }
           </Route>
           <Route path="/create-ad">
             { isLoggedIn ? <CreateAds /> : <Redirect to='/'/> }
-            
           </Route>
           <Route exact path="/add/:id">
             <SingleAd />
           </Route>
           <Route path="/add/update/:id">
-            <UpdateAd />
+            { isLoggedIn ? <UpdateAd /> : <Redirect to='/'/> }
           </Route>
           <Route path="*">
             <NoMatch />

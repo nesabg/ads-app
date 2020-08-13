@@ -24,7 +24,7 @@ const CreateAds = () => {
         //handle register function
         const handleRegister = (e) => {
             e.preventDefault()
-            createAd( { title, address, description, imageUrl, auth } ).then( res => {
+            createAd( { title, address, description, imageUrl, auth, price } ).then( res => {
                 history.push('/')
             })
         }

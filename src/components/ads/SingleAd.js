@@ -71,6 +71,7 @@ const SingleAd = () => {
                 <img src={currentAd.imageUrl} alt="imgAlt" />
                 <h1>{ currentAd.title }</h1>
                 <p>Description: { currentAd.description}</p>
+                <p>Price: { currentAd.price}</p>
             </AdData>
             <UserData>
                 <img src={user.imageUrl} alt='user pic' />
