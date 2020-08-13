@@ -4,7 +4,7 @@ import { AdContext } from "../../contexts/AdContext"
 import Input from "../auth/Input"
 import  { validation }  from '../../utils/validations'
 import { useHistory } from 'react-router-dom'
-import { Form, HeadingOne } from '../../utils/elements'
+import { Form, HeadingOne, SubmitButton } from '../../utils/elements'
 import TextareaField from '../auth/TextareaField'
 
 const CreateAds = () => {
@@ -49,7 +49,7 @@ const CreateAds = () => {
 
                 <Input type="number" value={price} setValue={setPrice} valid={validPrice} name="Price" />
                 
-            <button type="submit" disabled={ validTitle.err } onClick={ handleRegister }>Create ad</button>
+            <SubmitButton type="submit" disabled={ validTitle.err } onClick={ handleRegister }>Create ad</SubmitButton>
             </Form>
       </div>
     )

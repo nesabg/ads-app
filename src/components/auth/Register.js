@@ -1,10 +1,21 @@
 import React, { useState, useContext } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
 import Input from "./Input"
+import styled from 'styled-components'
 import TextareaField from "./TextareaField"
 import { validation } from '../../utils/validations'
 import { Form, SubmitButton, HeadingOne } from '../../utils/elements'
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
+
+const RegisterWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 60% 38%;
+`
+
+const StyledImage = styled.img`
+  width: 100%;
+  margin: 20px;
+`
 
 const Register = () => {
   //this is a state hooks
@@ -38,19 +49,23 @@ const validImage = validation('image', imageUrl, 'Image url is not valid')
   return (
     <div>
       <HeadingOne>Register</HeadingOne>
-      <Form>
-        <Input type="text" value={name} setValue={setName} valid={validName} name="name" />
+      <RegisterWrapper>
+        <Form>
+          <Input type="text" value={name} setValue={setName} valid={validName} name="name" />
 
-        <TextareaField value={description} setValue={setDescription} valid={validDescription} name="description" />
+          <TextareaField value={description} setValue={setDescription} valid={validDescription} name="description" />
 
-        <Input type="text" value={imageUrl} setValue={setImgUrl} valid={validImage} name="image url" />
+          <Input type="text" value={imageUrl} setValue={setImgUrl} valid={validImage} name="image url" />
 
-        <Input type="text" value={email} setValue={setEmail} valid={validEmail} name="email" />
-        
-        <Input type="password" value={password} setValue={setPassword} valid={validPassword} name="password" />
+          <Input type="text" value={email} setValue={setEmail} valid={validEmail} name="email" />
+          
+          <Input type="password" value={password} setValue={setPassword} valid={validPassword} name="password" />
 
-        <SubmitButton type="submit" disabled={ validEmail.err || validPassword.err } onClick={ handleRegister }>Register</SubmitButton>
-      </Form>
+          <SubmitButton type="submit" disabled={ validEmail.err || validPassword.err } onClick={ handleRegister }>Register</SubmitButton>
+        </Form>
+        <StyledImage src="https://cdn.pixabay.com/photo/2019/10/02/04/40/registration-4519979_960_720.jpg" alt="register"/>
+      </RegisterWrapper>
+      <Link to="/login">You have account? Login now</Link>
     </div>
   );
 };

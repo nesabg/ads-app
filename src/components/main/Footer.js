@@ -4,13 +4,13 @@ import styled from 'styled-components'
 const FooterEl = styled.footer`
     width: 100%;
     margin-top: 3rem;
-    background-color: #61dafb;
-    padding: 5px 10px;
+    background-color: black;
+    padding: 30px 40px;
 `
 
 const AnchorTag = styled.a`
     width: 48%;
-    color: white;
+    color: #61dafb;
     padding: 5px;
     display: inline-block;
     vertical-align: top;

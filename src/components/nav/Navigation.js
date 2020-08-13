@@ -8,16 +8,16 @@ import styled from 'styled-components';
 const NavField = styled.nav`
     width: 100%;
     display: inline-block;
-    background-color: #61dafb;
-    padding: 5px 0;
+    background-color: #20232a;
+    padding: 5px 40px;
 `
 
 const StyledLink = styled(Link)`
     width: 10%;
     font-size: 20px;
     text-align: center;
-    background-color: white;
-    color: #61dafb;
+    background-color: #61dafb;
+    color: white;
     margin: 10px;
     padding: 20px 10px;
     display: inline-block;

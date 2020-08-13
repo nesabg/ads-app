@@ -1,18 +1,17 @@
 import styled from 'styled-components'
 
 export const Form = styled.form`
-    width: 60%;
+    width: 100%;
     margin: 3em 0;
 `
 
 export const SubmitButton = styled.button`
 
     background: ${(props) =>  props.color || '#61dafb'}; ;
-    color: white;
+    color: black;
     font-size: 1em;
     margin: 1em 0;
-    padding: 0.25em 1em;
-    border-radius: 3px;
+    padding: 10px 30px;
     border: none;
     cursor: pointer;
 `
@@ -32,13 +31,13 @@ export const NavUlElement = styled.ul`
 
     li a{
         width: 80%;
-        color: white;
+        color: #61dafb;
         margin: 0 auto;
         padding: 20px 10px;
     }
 
     li a:hover {
-        color: red;
+        color: #61dafb;
         background-color: white;
     }
 `
