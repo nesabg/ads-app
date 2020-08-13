@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
 import Input from "./Input"
 import TextareaField from "./TextareaField"
-import validation from '../../utils/validation'
+import { validation } from '../../utils/validations'
 import { Form, SubmitButton } from '../../utils/elements'
 
 const Register = () => {
