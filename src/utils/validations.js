@@ -71,5 +71,17 @@ export const validation = (type, field, errMessage) => {
                 message: errMessage
             }
         }
+    }else if(type === 'message'){
+        if(field.length > 16 && field.length < 100) {
+            return {
+                err: false,
+                message: null
+            }
+        }else {
+            return {
+                err: true,
+                message: errMessage
+            }
+        }
     }
 }

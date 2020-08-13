@@ -19,7 +19,8 @@ class AdContextProvider extends Component {
         price: data.price,
         author: data.auth.user.name,
         aid: data.auth.user.uid,
-        aimg: data.auth.user.imageUrl
+        aimg: data.auth.user.imageUrl,
+        comments: []
         }         
         return db.collection('ads').add(dbData)
     }
@@ -55,9 +56,13 @@ class AdContextProvider extends Component {
         })
     }
 
+    addComment = (data, id) => {
+       return db.collection('ads').doc(id).update({ comments: firebase.firestore.FieldValue.arrayUnion(data) })
+    }
+
     render() { 
       return (
-        <AdContext.Provider value={{ ...this.state, createAd: this.createAd, deleteAd: this.removeContent, updateAd: this.updateAd }}>
+        <AdContext.Provider value={{ ...this.state, createAd: this.createAd, deleteAd: this.removeContent, updateAd: this.updateAd, addComment: this.addComment }}>
           {this.props.children}
         </AdContext.Provider>
       );
