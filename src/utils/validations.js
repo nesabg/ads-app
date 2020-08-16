@@ -60,7 +60,7 @@ export const validation = (type, field, errMessage) => {
             }
         }
     }else if(type === 'price'){
-        if(field >= 0) {
+        if(field >= 0 && field !== '') {
             return {
                 err: false,
                 message: null

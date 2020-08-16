@@ -29,12 +29,13 @@ const CreateAds = () => {
             })
         }
 
-        const validTitle = validation('message', title, 'Title must be between 3 and 20 chars')
+        const validTitle = validation('name', title, 'Title must be between 3 and 20 chars')
         const validDescription = validation('description', description, 'Description must be between 32 and 2000 chars')
         const validImage = validation('image', imageUrl, 'Image url is not valid')
         const validAddress = validation('description', address, 'Address must be between 32 and 2000 chars')
         const validPrice = validation('price', price, 'Price must be positive number')
 
+        console.log(price, typeof price)
     return (
         <div>
             <HeadingOne>Create a ad</HeadingOne>
@@ -45,11 +46,11 @@ const CreateAds = () => {
 
                 <Input type="text" value={imageUrl} setValue={setImgUrl} valid={validImage} name="image url" />
 
-                <Input type="text" value={address} setValue={setAddress} valid={validAddress} name="Address" />
+                <Input type="text" value={address} setValue={setAddress} valid={validAddress} name="address" />
 
-                <Input type="number" value={price} setValue={setPrice} valid={validPrice} name="Price" />
+                <Input type="number" value={price} setValue={setPrice} valid={validPrice} name="price" />
                 
-            <SubmitButton type="submit" disabled={ validTitle.err } onClick={ handleRegister }>Create ad</SubmitButton>
+            <SubmitButton type="submit" disabled={ validTitle.err || validAddress.err || validImage.err || validPrice.err || validDescription.err } onClick={ handleRegister }>Create ad</SubmitButton>
             </Form>
       </div>
     )
