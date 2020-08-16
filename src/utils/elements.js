@@ -14,6 +14,11 @@ export const SubmitButton = styled.button`
     padding: 10px 30px;
     border: none;
     cursor: pointer;
+
+    &:disabled {
+        background-color: grey;
+        cursor: no-drop;
+    }
 `
 
 export const NavUlElement = styled.ul`

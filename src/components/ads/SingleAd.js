@@ -65,7 +65,7 @@ const SingleAd = () => {
         })
     }
     console.log(currentAd.comments)
-    const comments = currentAd.comments.map( comment => <ViewComments key={ comment.dateCreate } comment={ comment }/>)
+    const comments = currentAd.comments !== undefined ? currentAd.comments.map( comment => <ViewComments key={ comment.dateCreate } comment={ comment }/>) : null;
 
     const isAuthor = user.uid === currentAd.aid
 

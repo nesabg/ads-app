@@ -31,7 +31,7 @@ class AuthContextProvider extends Component {
 
     logout = () => {
       return firebase.auth().signOut().then(res => {
-        this.setState( {...this.state, isLoggedIn: false })
+        this.setState( {...this.state, isLoggedIn: false, user: {} })
       })
     }
 
